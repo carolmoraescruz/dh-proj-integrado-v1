@@ -15,8 +15,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,18 +31,12 @@ public class Turma implements Serializable {
 	@Column(name = "id_turma")
 	private Long idTurma;
 
-	@NotBlank
-	@Size(max = 50)
 	@Column(name = "horario")
 	private String horario;
 
-	@NotBlank
-	@Size(max = 10)
 	@Column(name = "data_inicio")
 	private LocalDate dataInicio;
 
-	@NotBlank
-	@Size(max = 10)
 	@Column(name = "data_termino")
 	private LocalDate dataTermino;
 	

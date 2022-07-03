@@ -2,8 +2,6 @@ package br.com.bridge.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -41,13 +39,13 @@ public class TurmaController {
 	
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value = HttpStatus.CREATED)
-	public Turma create(@Valid @RequestBody Turma turma) {
+	public Turma create(@RequestBody Turma turma) {
 		return service.insert(turma);
 	}
 	
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value = HttpStatus.OK)
-	public Turma update(@Valid @RequestBody Turma turma) {
+	public Turma update(@RequestBody Turma turma) {
 		return service.update(turma);
 	}
 	

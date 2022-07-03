@@ -2,8 +2,6 @@ package br.com.bridge.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -41,13 +39,13 @@ public class CursoController {
 	
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value = HttpStatus.CREATED)
-	public Curso create(@Valid @RequestBody Curso curso) {
+	public Curso create(@RequestBody Curso curso) {
 		return service.insert(curso);
 	}
 	
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value = HttpStatus.OK)
-	public Curso update(@Valid @RequestBody Curso curso) {
+	public Curso update(@RequestBody Curso curso) {
 		return service.update(curso);
 	}
 	
