@@ -1,13 +1,18 @@
 package br.com.bridge.domain.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -41,5 +46,13 @@ public class Curso implements Serializable {
 	
 	@Column(name = "link_cadastro")
 	private String linkCadastro;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "curso")
+	private List<Turma> turmas = new ArrayList<Turma>();
+	
+	public List<Turma> getTurmas() {
+		return turmas;
+	}
 		
 }

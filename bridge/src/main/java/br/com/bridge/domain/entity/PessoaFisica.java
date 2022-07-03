@@ -4,10 +4,15 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.bridge.domain.entity.enums.TipoPCD;
 import lombok.AllArgsConstructor;
@@ -18,7 +23,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "tb_pessoa_fisica")
+@Table(name = "tb_alunos")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -45,6 +50,14 @@ public class PessoaFisica extends Pessoa {
 	
 	@Column(name = "cv_linkedin")
 	private String cvLinkedin;
+	
+	@JsonIgnore
+	@ManyToMany(mappedBy = "alunos")
+	private Set<Turma> turmas = new HashSet<>();
+	
+	public Set<Turma> getTurmas() {
+		return turmas;
+	}
 	
 	public int calcularIdade(Date dataNascimento) {
 		LocalDate dataNascimentoConvertida = dataNascimento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
