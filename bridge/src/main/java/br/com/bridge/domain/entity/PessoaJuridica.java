@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -28,9 +30,13 @@ import lombok.ToString;
 public class PessoaJuridica extends Pessoa {
 	private static final long serialVersionUID = 1L;
 	
+	@NotBlank
+	@Size(max = 18)
 	@Column(name = "cnpj")
 	private String cnpj;
 	
+	@NotBlank
+	@Size(max = 255)
 	@Column(name = "sobre_instituicao")
 	private String sobreInstituicao;
 	
