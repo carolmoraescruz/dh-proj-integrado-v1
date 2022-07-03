@@ -32,22 +32,22 @@ import lombok.ToString;
 @ToString
 public class PessoaFisica extends Pessoa {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Column(name = "sobrenome")
 	private String sobrenome;
-
+	
 	@Column(name = "nomesocial")
 	private String nomeSocial;
-
+	
 	@Column(name = "cpf")
 	private String cpf;
-
+	
 	@Column(name = "data_nascimento")
 	private LocalDate dataNascimento;
-
+	
 	@Column(name = "tipo_pcd")
 	private TipoPCD tipoPcd;
-
+	
 	@Column(name = "cv_linkedin")
 	private String cvLinkedin;
 	

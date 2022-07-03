@@ -27,10 +27,10 @@ import lombok.ToString;
 @ToString
 public class PessoaJuridica extends Pessoa {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Column(name = "cnpj")
 	private String cnpj;
-
+	
 	@Column(name = "sobre_instituicao")
 	private String sobreInstituicao;
 	

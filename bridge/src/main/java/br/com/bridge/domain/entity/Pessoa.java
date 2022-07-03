@@ -21,20 +21,14 @@ public abstract class Pessoa implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_pessoa")
 	private Long idPessoa;
-
+	
 	@Column(name = "nome")
 	private String nome;
-
+	
 	@Column(name = "email")
 	private String email;
 	
 	@Column(name = "endereco")
 	private String endereco;
-
-	@Column(name = "cidade")
-	private String cidade;
-
-	@Column(name = "telefone")
-	private String telefone;
 
 }

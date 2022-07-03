@@ -14,7 +14,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import br.com.bridge.domain.entity.enums.AreaInteresse;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -32,19 +31,19 @@ public class Curso implements Serializable {
 
 	@Column(name = "nome_curso")
 	private String nomeCurso;
-
+	
 	@Column(name = "duracao")
 	private String duracao;
-
+	
 	@Column(name = "area_interesse")
-	private AreaInteresse areaInteresse;
-
+	private Integer areaInteresse;
+	
 	@Column(name = "sobre_curso")
 	private String sobreCurso;
-
+	
 	@Column(name = "escolaridade_minima")
 	private String escolaridadeMinima;
-
+	
 	@Column(name = "link_cadastro")
 	private String linkCadastro;
 	
