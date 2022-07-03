@@ -29,8 +29,8 @@ public class CursoService {
 		return entity;
 	}
 	
-	public void delete(Curso curso) {
-		repository.delete(curso);
+	public void deleteById(Long id) {
+		repository.deleteById(id);
 	}
 	
 	public Curso update(Curso curso) {

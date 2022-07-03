@@ -29,8 +29,8 @@ public class TurmaService {
 		return entity;
 	}
 	
-	public void delete(Turma turma) {
-		repository.delete(turma);
+	public void deleteById(Long id) {
+		repository.deleteById(id);
 	}
 	
 	public Turma update(Turma turma) {

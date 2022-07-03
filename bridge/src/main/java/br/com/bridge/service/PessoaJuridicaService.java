@@ -29,8 +29,8 @@ public class PessoaJuridicaService {
 		return entity;
 	}
 	
-	public void delete(PessoaJuridica empresa) {
-		repository.delete(empresa);
+	public void deleteById(Long id) {
+		repository.deleteById(id);
 	}
 	
 	public PessoaJuridica update(PessoaJuridica empresa) {

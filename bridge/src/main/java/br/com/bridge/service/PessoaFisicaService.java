@@ -29,8 +29,8 @@ public class PessoaFisicaService {
 		return entity;
 	}
 	
-	public void delete(PessoaFisica aluno) {
-		repository.delete(aluno);
+	public void deleteById(Long id) {
+		repository.deleteById(id);
 	}
 	
 	public PessoaFisica update(PessoaFisica aluno) {
