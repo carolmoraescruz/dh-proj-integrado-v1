@@ -43,7 +43,7 @@ public class CursoController {
 		return service.update(curso);
 	}
 	
-	@DeleteMapping(value="/{id")
+	@DeleteMapping(value="/{id}")
 	public void delete(@PathVariable("id") Long id) {
 		service.delete(id);
 	}
