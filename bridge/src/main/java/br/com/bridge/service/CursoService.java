@@ -29,8 +29,10 @@ public class CursoService {
 		return entity;
 	}
 	
-	public void deleteById(Long id) {
-		repository.deleteById(id);
+	public void delete(Long id) {
+		Curso entity = repository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com este id."));
+		repository.delete(entity);
 	}
 	
 	public Curso update(Curso curso) {

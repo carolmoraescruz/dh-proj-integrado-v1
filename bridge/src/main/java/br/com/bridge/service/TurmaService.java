@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.bridge.domain.entity.Curso;
 import br.com.bridge.domain.entity.Turma;
 import br.com.bridge.exception.ResourceNotFoundException;
 import br.com.bridge.repository.TurmaRepository;
@@ -29,8 +30,10 @@ public class TurmaService {
 		return entity;
 	}
 	
-	public void deleteById(Long id) {
-		repository.deleteById(id);
+	public void delete(Long id) {
+		Turma entity = repository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com este id."));
+		repository.delete(entity);
 	}
 	
 	public Turma update(Turma turma) {
