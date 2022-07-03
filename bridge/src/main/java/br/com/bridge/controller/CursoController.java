@@ -17,7 +17,7 @@ import br.com.bridge.domain.entity.Curso;
 import br.com.bridge.service.CursoService;
 
 @RestController
-@RequestMapping("/curso")
+@RequestMapping("/cursos")
 public class CursoController {
 	
 	@Autowired
