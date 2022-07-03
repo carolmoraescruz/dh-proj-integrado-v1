@@ -8,4 +8,6 @@ import br.com.bridge.domain.entity.Curso;
 @Repository
 public interface CursoRepository extends JpaRepository<Curso, Long>{
 
+	Curso findByNomeCurso(String nomeCurso);
+
 }
