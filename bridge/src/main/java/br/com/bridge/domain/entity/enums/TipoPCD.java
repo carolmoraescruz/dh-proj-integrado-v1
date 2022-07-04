@@ -12,7 +12,7 @@ public enum TipoPCD {
 	private int codigo;
 	
 	private TipoPCD(int codigo) {
-		this.codigo= codigo;
+		this.codigo = codigo;
 	}
 	
 	public int getCodigo() {
