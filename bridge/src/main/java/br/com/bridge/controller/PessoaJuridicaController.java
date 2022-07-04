@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.bridge.domain.entity.PessoaJuridica;
+import br.com.bridge.domain.vo.PessoaJuridicaVO;
 import br.com.bridge.service.PessoaJuridicaService;
 
 @RestController
@@ -26,22 +26,22 @@ public class PessoaJuridicaController {
 	PessoaJuridicaService service;
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<PessoaJuridica> findAll() {
+	public List<PessoaJuridicaVO> findAll() {
 		return service.findAll();
 	}
 	
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public PessoaJuridica findById(@PathVariable("id") Long id) {
+	public PessoaJuridicaVO findById(@PathVariable("id") Long id) {
 		return service.findById(id);
 	}
 	
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public PessoaJuridica create(@Valid @RequestBody PessoaJuridica empresa) {
+	public PessoaJuridicaVO create(@Valid @RequestBody PessoaJuridicaVO empresa) {
 		return service.insert(empresa);
 	}
 	
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public PessoaJuridica update(@Valid @RequestBody PessoaJuridica empresa) {
+	public PessoaJuridicaVO update(@Valid @RequestBody PessoaJuridicaVO empresa) {
 		return service.update(empresa);
 	}
 	
