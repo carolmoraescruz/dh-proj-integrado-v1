@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.bridge.adapter.DozerConverter;
 import br.com.bridge.domain.entity.Turma;
-import br.com.bridge.domain.vo.TurmaVO;
+import br.com.bridge.domain.vo.v1.TurmaVO;
 import br.com.bridge.exception.ResourceNotFoundException;
 import br.com.bridge.repository.TurmaRepository;
 

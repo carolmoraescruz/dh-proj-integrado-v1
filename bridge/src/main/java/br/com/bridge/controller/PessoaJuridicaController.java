@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.bridge.domain.vo.PessoaJuridicaVO;
+import br.com.bridge.domain.vo.v1.PessoaJuridicaVO;
 import br.com.bridge.service.PessoaJuridicaService;
 
 @RestController
-@RequestMapping("/empresas")
+@RequestMapping("/empresas/v1")
 public class PessoaJuridicaController {
 	
 	@Autowired

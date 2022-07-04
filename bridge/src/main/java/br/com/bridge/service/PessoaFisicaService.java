@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.bridge.adapter.DozerConverter;
 import br.com.bridge.domain.entity.PessoaFisica;
-import br.com.bridge.domain.vo.PessoaFisicaVO;
+import br.com.bridge.domain.vo.v1.PessoaFisicaVO;
 import br.com.bridge.exception.ResourceNotFoundException;
 import br.com.bridge.repository.PessoaFisicaRepository;
 

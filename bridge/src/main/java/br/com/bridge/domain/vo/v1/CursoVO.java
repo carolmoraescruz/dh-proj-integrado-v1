@@ -1,4 +1,4 @@
-package br.com.bridge.domain.vo;
+package br.com.bridge.domain.vo.v1;
 
 import java.io.Serializable;
 import java.util.Objects;

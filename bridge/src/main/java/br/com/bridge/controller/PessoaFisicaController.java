@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.bridge.domain.vo.PessoaFisicaVO;
+import br.com.bridge.domain.vo.v1.PessoaFisicaVO;
 import br.com.bridge.service.PessoaFisicaService;
 
 @RestController
-@RequestMapping("/alunos")
+@RequestMapping("/alunos/v1")
 public class PessoaFisicaController {
 	
 	@Autowired
