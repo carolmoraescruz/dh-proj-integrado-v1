@@ -1,5 +1,8 @@
 package br.com.bridge.controller;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import java.util.List;
 
 import javax.validation.Valid;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,28 +30,36 @@ public class TurmaController {
 	@Autowired
 	TurmaService service;
 	
-	@GetMapping(produces = {"application/json", "application/xml"})
+	@RequestMapping(method = RequestMethod.GET, produces = {"application/json", "application/xml"})
 	@ResponseStatus(value = HttpStatus.OK)
 	public List<TurmaVO> findAll() {
-		return service.findAll();
+		List<TurmaVO> turmasVO = service.findAll();
+		turmasVO.stream().forEach(t -> t.add(linkTo(methodOn(TurmaController.class).findById(t.getKey())).withSelfRel()));
+		return turmasVO;
 	}
 	
 	@GetMapping(value = "/{id}", produces = {"application/json", "application/xml"})
 	@ResponseStatus(value = HttpStatus.OK)
 	public TurmaVO findById(@PathVariable("id") Long id) {
-		return service.findById(id);
+		TurmaVO turmaVO = service.findById(id);
+		turmaVO.add(linkTo(methodOn(TurmaController.class).findById(id)).withSelfRel());
+		return turmaVO;
 	}
 	
 	@PostMapping(consumes = {"application/json","application/xml"}, produces = {"application/json","application/xml"})
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public TurmaVO create(@Valid @RequestBody TurmaVO turma) {
-		return service.insert(turma);
+		TurmaVO turmaVO = service.insert(turma);
+		turmaVO.add(linkTo(methodOn(TurmaController.class).findById(turmaVO.getKey())).withSelfRel());
+		return turmaVO;
 	}
 	
 	@PutMapping(consumes = {"application/json","application/xml"}, produces = {"application/json","application/xml"})
 	@ResponseStatus(value = HttpStatus.OK)
 	public TurmaVO update(@Valid @RequestBody TurmaVO turma) {
-		return service.update(turma);
+		TurmaVO turmaVO = service.update(turma);
+		turmaVO.add(linkTo(methodOn(TurmaController.class).findById(turmaVO.getKey())).withSelfRel());
+		return turmaVO;
 	}
 	
 	@DeleteMapping(value="/{id}")
