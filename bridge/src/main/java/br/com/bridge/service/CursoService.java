@@ -5,28 +5,32 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.bridge.adapter.DozerConverter;
 import br.com.bridge.domain.entity.Curso;
+import br.com.bridge.domain.vo.CursoVO;
 import br.com.bridge.exception.ResourceNotFoundException;
 import br.com.bridge.repository.CursoRepository;
 
 @Service
 public class CursoService {
-	
+
 	@Autowired
 	private CursoRepository repository;
-	
-	public Curso insert(Curso curso) {
-		return repository.save(curso);
+
+	public CursoVO insert(CursoVO curso) {
+		var entity = DozerConverter.parseObject(curso, Curso.class);
+		var vo = DozerConverter.parseObject(repository.save(entity), CursoVO.class);
+		return vo;
 	}
-	
-	public List<Curso> findAll() {
-		return repository.findAll();
+
+	public List<CursoVO> findAll() {
+		return DozerConverter.parseListObject(repository.findAll(), CursoVO.class);
 	}
-	
-	public Curso findById(Long id) {
-		Curso entity = repository.findById(id)
+
+	public CursoVO findById(Long id) {
+		var entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com este id."));
-		return entity;
+		return DozerConverter.parseObject(entity, CursoVO.class);
 	}
 	
 	public Curso findByName(String nomeCurso) {
@@ -34,20 +38,23 @@ public class CursoService {
 	}
 	
 	public void delete(Long id) {
-		Curso entity = repository.findById(id)
+		var entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com este id."));
 		repository.delete(entity);
 	}
 	
-	public Curso update(Curso curso) {
-		Curso entity = findById(curso.getIdCurso());
+	public CursoVO update(CursoVO curso) {
+		var entity = repository.findById(curso.getKey())
+				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com esse Id"));
 		entity.setNomeCurso(curso.getNomeCurso());
 		entity.setDuracao(curso.getDuracao());
 		entity.setAreaInteresse(curso.getAreaInteresse());
 		entity.setSobreCurso(curso.getSobreCurso());
 		entity.setEscolaridadeMinima(curso.getEscolaridadeMinima());
 		entity.setLinkCadastro(curso.getLinkCadastro());
-		return repository.save(entity);
+		
+		var vo = DozerConverter.parseObject(repository.save(entity), CursoVO.class);
+		return vo;
 	}
 
 }
