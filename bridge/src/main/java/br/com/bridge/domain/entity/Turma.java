@@ -3,6 +3,7 @@ package br.com.bridge.domain.entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -16,13 +17,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name = "tb_turmas")
-@Data
-@NoArgsConstructor
+@ToString
 public class Turma implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -52,12 +51,84 @@ public class Turma implements Serializable {
 	@JoinTable(name = "tb_turma_empresa", joinColumns = @JoinColumn(name = "id_turma"), inverseJoinColumns = @JoinColumn(name = "id_pessoa"))
 	private Set<PessoaJuridica> empresas = new HashSet<>();
 	
+	public Turma() {
+	}
+
+	public Turma(Long idTurma, String horario, LocalDate dataInicio, LocalDate dataTermino, Curso curso) {
+		super();
+		this.idTurma = idTurma;
+		this.horario = horario;
+		this.dataInicio = dataInicio;
+		this.dataTermino = dataTermino;
+		this.curso = curso;
+	}
+
+	public Long getIdTurma() {
+		return idTurma;
+	}
+
+	public void setIdTurma(Long idTurma) {
+		this.idTurma = idTurma;
+	}
+
+	public String getHorario() {
+		return horario;
+	}
+
+	public void setHorario(String horario) {
+		this.horario = horario;
+	}
+
+	public LocalDate getDataInicio() {
+		return dataInicio;
+	}
+
+	public void setDataInicio(LocalDate dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+
+	public LocalDate getDataTermino() {
+		return dataTermino;
+	}
+
+	public void setDataTermino(LocalDate dataTermino) {
+		this.dataTermino = dataTermino;
+	}
+
+	public Curso getCurso() {
+		return curso;
+	}
+
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
+
 	public Set<PessoaFisica> getAlunos() {
 		return alunos;
 	}
 	
 	public Set<PessoaJuridica> getEmpresas() {
 		return empresas;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(alunos, curso, dataInicio, dataTermino, empresas, horario, idTurma);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Turma other = (Turma) obj;
+		return Objects.equals(alunos, other.alunos) && Objects.equals(curso, other.curso)
+				&& Objects.equals(dataInicio, other.dataInicio) && Objects.equals(dataTermino, other.dataTermino)
+				&& Objects.equals(empresas, other.empresas) && Objects.equals(horario, other.horario)
+				&& Objects.equals(idTurma, other.idTurma);
 	}
 		
 }
