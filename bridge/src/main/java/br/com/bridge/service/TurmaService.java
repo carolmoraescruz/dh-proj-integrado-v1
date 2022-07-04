@@ -5,8 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.bridge.domain.entity.Curso;
+import br.com.bridge.adapter.DozerConverter;
 import br.com.bridge.domain.entity.Turma;
+import br.com.bridge.domain.vo.TurmaVO;
 import br.com.bridge.exception.ResourceNotFoundException;
 import br.com.bridge.repository.TurmaRepository;
 
@@ -16,33 +17,38 @@ public class TurmaService {
 	@Autowired
 	private TurmaRepository repository;
 	
-	public Turma insert(Turma turma) {
-		return repository.save(turma);
+	public TurmaVO insert(TurmaVO turma) {
+		var entity = DozerConverter.parseObject(turma, Turma.class);
+		var vo = DozerConverter.parseObject(repository.save(entity), TurmaVO.class);
+		return vo;
 	}
 	
-	public List<Turma> findAll() {
-		return repository.findAll();
+	public List<TurmaVO> findAll() {
+		return DozerConverter.parseListObject(repository.findAll(), TurmaVO.class);
 	}
 	
-	public Turma findById(Long id) {
-		Turma entity = repository.findById(id)
+	public TurmaVO findById(Long id) {
+		var entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com este id."));
-		return entity;
+		return DozerConverter.parseObject(entity, TurmaVO.class);
 	}
 	
 	public void delete(Long id) {
-		Turma entity = repository.findById(id)
+		var entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com este id."));
 		repository.delete(entity);
 	}
 	
-	public Turma update(Turma turma) {
-		Turma entity = findById(turma.getIdTurma());
+	public TurmaVO update(TurmaVO turma) {
+		var entity = repository.findById(turma.getKey())
+				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com esse Id"));
 		entity.setHorario(turma.getHorario());
 		entity.setDataInicio(turma.getDataInicio());
 		entity.setDataTermino(turma.getDataTermino());
 		entity.setCurso(turma.getCurso());
-		return repository.save(entity);
+
+		var vo = DozerConverter.parseObject(repository.save(entity), TurmaVO.class);
+		return vo;
 	}
 
 }

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.bridge.domain.entity.Turma;
+import br.com.bridge.domain.vo.TurmaVO;
 import br.com.bridge.service.TurmaService;
 
 @RestController
@@ -26,22 +26,22 @@ public class TurmaController {
 	TurmaService service;
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Turma> findAll() {
+	public List<TurmaVO> findAll() {
 		return service.findAll();
 	}
 	
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Turma findById(@PathVariable("id") Long id) {
+	public TurmaVO findById(@PathVariable("id") Long id) {
 		return service.findById(id);
 	}
 	
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Turma create(@Valid @RequestBody Turma turma) {
+	public TurmaVO create(@Valid @RequestBody TurmaVO turma) {
 		return service.insert(turma);
 	}
 	
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Turma update(@Valid @RequestBody Turma turma) {
+	public TurmaVO update(@Valid @RequestBody TurmaVO turma) {
 		return service.update(turma);
 	}
 	
