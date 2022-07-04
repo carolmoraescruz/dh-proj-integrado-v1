@@ -2,6 +2,8 @@ package br.com.bridge.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,12 +36,12 @@ public class CursoController {
 	}
 	
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Curso create(@RequestBody Curso curso) {
+	public Curso create(@Valid @RequestBody Curso curso) {
 		return service.insert(curso);
 	}
 	
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Curso update(@RequestBody Curso curso) {
+	public Curso update(@Valid @RequestBody Curso curso) {
 		return service.update(curso);
 	}
 	

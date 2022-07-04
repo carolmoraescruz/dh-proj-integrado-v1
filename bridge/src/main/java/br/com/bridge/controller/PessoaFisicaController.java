@@ -2,6 +2,8 @@ package br.com.bridge.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,12 +36,12 @@ public class PessoaFisicaController {
 	}
 	
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public PessoaFisica create(@RequestBody PessoaFisica aluno) {
+	public PessoaFisica create(@Valid @RequestBody PessoaFisica aluno) {
 		return service.insert(aluno);
 	}
 	
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public PessoaFisica update(@RequestBody PessoaFisica aluno) {
+	public PessoaFisica update(@Valid @RequestBody PessoaFisica aluno) {
 		return service.update(aluno);
 	}
 	

@@ -2,6 +2,8 @@ package br.com.bridge.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,12 +36,12 @@ public class TurmaController {
 	}
 	
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Turma create(@RequestBody Turma turma) {
+	public Turma create(@Valid @RequestBody Turma turma) {
 		return service.insert(turma);
 	}
 	
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Turma update(@RequestBody Turma turma) {
+	public Turma update(@Valid @RequestBody Turma turma) {
 		return service.update(turma);
 	}
 	
