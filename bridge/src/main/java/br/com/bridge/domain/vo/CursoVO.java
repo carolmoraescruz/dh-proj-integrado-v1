@@ -65,21 +65,25 @@ public class CursoVO extends RepresentationModel<CursoVO> implements Serializabl
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(areaInteresse, duracao, escolaridadeMinima, key, linkCadastro, nomeCurso, sobreCurso);
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result
+				+ Objects.hash(areaInteresse, duracao, escolaridadeMinima, key, linkCadastro, nomeCurso, sobreCurso);
+		return result;
 	}
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		CursoVO other = (CursoVO) obj;
-		return Objects.equals(areaInteresse, other.areaInteresse) && Objects.equals(duracao, other.duracao)
+		return areaInteresse == other.areaInteresse && Objects.equals(duracao, other.duracao)
 				&& Objects.equals(escolaridadeMinima, other.escolaridadeMinima) && Objects.equals(key, other.key)
 				&& Objects.equals(linkCadastro, other.linkCadastro) && Objects.equals(nomeCurso, other.nomeCurso)
 				&& Objects.equals(sobreCurso, other.sobreCurso);
-	}	
+	}
 
 }
