@@ -12,6 +12,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -24,21 +27,29 @@ import lombok.ToString;
 public class PessoaFisica extends Pessoa {
 	private static final long serialVersionUID = 1L;
 	
+	@NotBlank
+	@Size(max = 100)
 	@Column(name = "sobrenome")
 	private String sobrenome;
 	
+	@Size(max = 35)
 	@Column(name = "nomesocial")
 	private String nomeSocial;
 	
+	@NotBlank
+	@Size(max = 14)
 	@Column(name = "cpf")
 	private String cpf;
 	
+	@NotNull
 	@Column(name = "data_nascimento")
 	private LocalDate dataNascimento;
 	
+	@NotNull
 	@Column(name = "tipo_pcd")
 	private int tipoPcd;
 	
+	@Size(max = 100)
 	@Column(name = "cv_linkedin")
 	private String cvLinkedin;
 	
