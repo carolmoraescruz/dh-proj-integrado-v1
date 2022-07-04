@@ -5,7 +5,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,22 +24,22 @@ public class PessoaFisicaController {
 	@Autowired
 	PessoaFisicaService service;
 	
-	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(produces = {"application/json", "application/xml"})
 	public List<PessoaFisicaVO> findAll() {
 		return service.findAll();
 	}
 	
-	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/{id}", produces = {"application/json", "application/xml"})
 	public PessoaFisicaVO findById(@PathVariable("id") Long id) {
 		return service.findById(id);
 	}
 	
-	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(consumes = {"application/json","application/xml"}, produces = {"application/json","application/xml"})
 	public PessoaFisicaVO create(@Valid @RequestBody PessoaFisicaVO aluno) {
 		return service.insert(aluno);
 	}
 	
-	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(consumes = {"application/json","application/xml"}, produces = {"application/json","application/xml"})
 	public PessoaFisicaVO update(@Valid @RequestBody PessoaFisicaVO aluno) {
 		return service.update(aluno);
 	}
