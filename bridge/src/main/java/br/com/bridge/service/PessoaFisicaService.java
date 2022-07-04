@@ -5,8 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.bridge.domain.entity.Curso;
+import br.com.bridge.adapter.DozerConverter;
 import br.com.bridge.domain.entity.PessoaFisica;
+import br.com.bridge.domain.vo.PessoaFisicaVO;
 import br.com.bridge.exception.ResourceNotFoundException;
 import br.com.bridge.repository.PessoaFisicaRepository;
 
@@ -16,28 +17,31 @@ public class PessoaFisicaService {
 	@Autowired
 	private PessoaFisicaRepository repository;
 	
-	public PessoaFisica insert(PessoaFisica aluno) {
-		return repository.save(aluno);
+	public PessoaFisicaVO insert(PessoaFisicaVO aluno) {
+		var entity = DozerConverter.parseObject(aluno, PessoaFisica.class);
+		var vo = DozerConverter.parseObject(repository.save(entity), PessoaFisicaVO.class);
+		return vo;
 	}
 	
-	public List<PessoaFisica> findAll() {
-		return repository.findAll();
+	public List<PessoaFisicaVO> findAll() {
+		return DozerConverter.parseListObject(repository.findAll(), PessoaFisicaVO.class);
 	}
 	
-	public PessoaFisica findById(Long id) {
-		PessoaFisica entity = repository.findById(id)
+	public PessoaFisicaVO findById(Long id) {
+		var entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com este id."));
-		return entity;
+		return DozerConverter.parseObject(entity, PessoaFisicaVO.class);
 	}
 	
 	public void delete(Long id) {
-		PessoaFisica entity = repository.findById(id)
+		var entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com este id."));
 		repository.delete(entity);
 	}
 	
-	public PessoaFisica update(PessoaFisica aluno) {
-		PessoaFisica entity = findById(aluno.getIdPessoa());
+	public PessoaFisicaVO update(PessoaFisicaVO aluno) {
+		var entity = repository.findById(aluno.getKey())
+				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com esse Id"));
 		entity.setNome(aluno.getNome());
 		entity.setEmail(aluno.getEmail());
 		entity.setEndereco(aluno.getEndereco());
@@ -47,7 +51,9 @@ public class PessoaFisicaService {
 		entity.setDataNascimento(aluno.getDataNascimento());
 		entity.setTipoPcd(aluno.getTipoPcd());
 		entity.setCvLinkedin(aluno.getCvLinkedin());
-		return repository.save(entity);
+
+		var vo = DozerConverter.parseObject(repository.save(entity), PessoaFisicaVO.class);
+		return vo;
 	}
 
 }
