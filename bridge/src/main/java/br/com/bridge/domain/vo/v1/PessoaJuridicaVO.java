@@ -1,7 +1,6 @@
 package br.com.bridge.domain.vo.v1;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -11,7 +10,6 @@ import org.springframework.hateoas.RepresentationModel;
 import com.github.dozermapper.core.Mapping;
 
 import br.com.bridge.domain.entity.Turma;
-import br.com.bridge.domain.entity.enums.TipoPCD;
 
 public class PessoaJuridicaVO extends RepresentationModel<PessoaJuridicaVO> implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -75,10 +73,6 @@ public class PessoaJuridicaVO extends RepresentationModel<PessoaJuridicaVO> impl
 
 	public Set<Turma> getTurmasOfertadas() {
 		return turmasOfertadas;
-	}
-
-	public void setTurmasOfertadas(Set<Turma> turmasOfertadas) {
-		this.turmasOfertadas = turmasOfertadas;
 	}
 
 	@Override

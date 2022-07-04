@@ -65,9 +65,9 @@ public class PessoaJuridica extends Pessoa {
 		return turmasOfertadas;
 	}
 
-	public void setTurmasOfertadas(Set<Turma> turmasOfertadas) {
-		this.turmasOfertadas = turmasOfertadas;
-	}
+//	public void setTurmasOfertadas(Set<Turma> turmasOfertadas) {
+//		this.turmasOfertadas = turmasOfertadas;
+//	}
 
 	@Override
 	public int hashCode() {

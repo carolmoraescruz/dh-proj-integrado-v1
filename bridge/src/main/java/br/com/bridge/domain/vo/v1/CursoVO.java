@@ -1,12 +1,15 @@
 package br.com.bridge.domain.vo.v1;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.hateoas.RepresentationModel;
 
 import com.github.dozermapper.core.Mapping;
 
+import br.com.bridge.domain.entity.Turma;
 import br.com.bridge.domain.entity.enums.AreaInteresse;
 
 public class CursoVO extends RepresentationModel<CursoVO> implements Serializable {
@@ -20,49 +23,68 @@ public class CursoVO extends RepresentationModel<CursoVO> implements Serializabl
 	private String sobreCurso;
 	private String escolaridadeMinima;
 	private String linkCadastro;
+	private List<Turma> turmas = new ArrayList<Turma>();
 	
 	public Long getKey() {
 		return key;
 	}
+	
 	public void setKey(Long key) {
 		this.key = key;
 	}
+	
 	public String getNomeCurso() {
 		return nomeCurso;
 	}
+	
 	public void setNomeCurso(String nomeCurso) {
 		this.nomeCurso = nomeCurso;
 	}
+	
 	public String getDuracao() {
 		return duracao;
 	}
+	
 	public void setDuracao(String duracao) {
 		this.duracao = duracao;
 	}
+	
 	public AreaInteresse getAreaInteresse() {
 		return areaInteresse;
 	}
+	
 	public void setAreaInteresse(AreaInteresse areaInteresse) {
 		this.areaInteresse = areaInteresse;
 	}
+	
 	public String getSobreCurso() {
 		return sobreCurso;
 	}
+	
 	public void setSobreCurso(String sobreCurso) {
 		this.sobreCurso = sobreCurso;
 	}
+	
 	public String getEscolaridadeMinima() {
 		return escolaridadeMinima;
 	}
+	
 	public void setEscolaridadeMinima(String escolaridadeMinima) {
 		this.escolaridadeMinima = escolaridadeMinima;
 	}
+	
 	public String getLinkCadastro() {
 		return linkCadastro;
 	}
+	
 	public void setLinkCadastro(String linkCadastro) {
 		this.linkCadastro = linkCadastro;
 	}
+	
+	public List<Turma> getTurmas() {
+		return turmas;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
