@@ -46,6 +46,7 @@ public class TurmaService {
 		entity.setDataInicio(turma.getDataInicio());
 		entity.setDataTermino(turma.getDataTermino());
 		entity.setCurso(turma.getCurso());
+		entity.setStatusTurma(turma.getStatusTurma());
 
 		var vo = DozerConverter.parseObject(repository.save(entity), TurmaVO.class);
 		return vo;

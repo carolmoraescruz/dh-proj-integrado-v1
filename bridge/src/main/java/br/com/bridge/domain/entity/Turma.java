@@ -20,6 +20,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import br.com.bridge.domain.entity.enums.StatusTurma;
 import lombok.ToString;
 
 @Entity
@@ -46,6 +47,10 @@ public class Turma implements Serializable {
 	@Column(name = "data_termino")
 	private LocalDate dataTermino;
 	
+	@NotNull
+	@Column(name = "status_turma")
+	private int statusTurma;
+	
 	@ManyToOne
 	@JoinColumn(name = "id_curso")
 	private Curso curso;
@@ -61,12 +66,13 @@ public class Turma implements Serializable {
 	public Turma() {
 	}
 
-	public Turma(Long idTurma, String horario, LocalDate dataInicio, LocalDate dataTermino, Curso curso) {
+	public Turma(Long idTurma, String horario, LocalDate dataInicio, LocalDate dataTermino, StatusTurma statusTurma, Curso curso) {
 		super();
 		this.idTurma = idTurma;
 		this.horario = horario;
 		this.dataInicio = dataInicio;
 		this.dataTermino = dataTermino;
+		setStatusTurma(statusTurma);
 		this.curso = curso;
 	}
 
@@ -101,6 +107,16 @@ public class Turma implements Serializable {
 	public void setDataTermino(LocalDate dataTermino) {
 		this.dataTermino = dataTermino;
 	}
+	
+	public StatusTurma getStatusTurma() {
+		return StatusTurma.valueOf(statusTurma);
+	}
+
+	public void setStatusTurma(StatusTurma statusTurma) {
+		if (statusTurma != null) {
+			this.statusTurma = statusTurma.getCodigo();
+		}
+	}
 
 	public Curso getCurso() {
 		return curso;
@@ -120,7 +136,7 @@ public class Turma implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(alunos, curso, dataInicio, dataTermino, empresas, horario, idTurma);
+		return Objects.hash(alunos, curso, dataInicio, dataTermino, empresas, horario, idTurma, statusTurma);
 	}
 
 	@Override
@@ -135,7 +151,7 @@ public class Turma implements Serializable {
 		return Objects.equals(alunos, other.alunos) && Objects.equals(curso, other.curso)
 				&& Objects.equals(dataInicio, other.dataInicio) && Objects.equals(dataTermino, other.dataTermino)
 				&& Objects.equals(empresas, other.empresas) && Objects.equals(horario, other.horario)
-				&& Objects.equals(idTurma, other.idTurma);
+				&& Objects.equals(idTurma, other.idTurma) && statusTurma == other.statusTurma;
 	}
 		
 }
