@@ -28,7 +28,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag(name = "Curso Endpoint")
 @RestController
-@RequestMapping("/cursos/v1")
+@RequestMapping("/api/cursos/v1")
 public class CursoController {
 
 	@Autowired

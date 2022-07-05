@@ -28,7 +28,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag(name = "Turma Endpoint")
 @RestController
-@RequestMapping("/turmas/v1")
+@RequestMapping("/api/turmas/v1")
 public class TurmaController {
 	
 	@Autowired
