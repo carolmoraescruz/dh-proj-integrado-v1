@@ -37,7 +37,7 @@ public class AuthController {
 	UserRepository repository;
 
 	@PostMapping(value = "/signin", produces = {"application/json", "application/xml"}, consumes = {"application/json",	"application/xml"})
-	public ResponseEntity signin(@RequestBody CredenciaisContaVO cred) {
+	public ResponseEntity<?> signin(@RequestBody CredenciaisContaVO cred) {
 		
 		try {
 			var username = cred.getUsername();
