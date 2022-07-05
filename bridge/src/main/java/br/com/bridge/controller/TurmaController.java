@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +23,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.bridge.domain.vo.v1.TurmaVO;
 import br.com.bridge.service.TurmaService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+@Tag(name = "Turma Endpoint")
 @RestController
 @RequestMapping("/turmas/v1")
 public class TurmaController {
@@ -30,7 +34,9 @@ public class TurmaController {
 	@Autowired
 	TurmaService service;
 	
+	@CrossOrigin("localhost:8080")
 	@RequestMapping(method = RequestMethod.GET, produces = {"application/json", "application/xml"})
+	@Operation(summary="Listar todas as turmas")
 	@ResponseStatus(value = HttpStatus.OK)
 	public List<TurmaVO> findAll() {
 		List<TurmaVO> turmasVO = service.findAll();
@@ -38,7 +44,9 @@ public class TurmaController {
 		return turmasVO;
 	}
 	
+	@CrossOrigin("localhost:8080")
 	@GetMapping(value = "/{id}", produces = {"application/json", "application/xml"})
+	@Operation(summary="Listar turmas por ID")
 	@ResponseStatus(value = HttpStatus.OK)
 	public TurmaVO findById(@PathVariable("id") Long id) {
 		TurmaVO turmaVO = service.findById(id);
@@ -47,6 +55,7 @@ public class TurmaController {
 	}
 	
 	@PostMapping(consumes = {"application/json","application/xml"}, produces = {"application/json","application/xml"})
+	@Operation(summary="Cadastrar nova turma")
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public TurmaVO create(@Valid @RequestBody TurmaVO turma) {
 		TurmaVO turmaVO = service.insert(turma);
@@ -55,6 +64,7 @@ public class TurmaController {
 	}
 	
 	@PutMapping(consumes = {"application/json","application/xml"}, produces = {"application/json","application/xml"})
+	@Operation(summary="Atualizar dados de turma")
 	@ResponseStatus(value = HttpStatus.OK)
 	public TurmaVO update(@Valid @RequestBody TurmaVO turma) {
 		TurmaVO turmaVO = service.update(turma);
@@ -63,6 +73,7 @@ public class TurmaController {
 	}
 	
 	@DeleteMapping(value="/{id}")
+	@Operation(summary="Deletar turmas por ID")
 	@ResponseStatus(value = HttpStatus.OK)
 	public void delete(@PathVariable("id") Long id) {
 		service.delete(id);

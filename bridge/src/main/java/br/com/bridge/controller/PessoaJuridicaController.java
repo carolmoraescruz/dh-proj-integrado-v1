@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +23,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.bridge.domain.vo.v1.PessoaJuridicaVO;
 import br.com.bridge.service.PessoaJuridicaService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+@Tag(name = "Empresa Endpoint")
 @RestController
 @RequestMapping("/empresas/v1")
 public class PessoaJuridicaController {
@@ -30,7 +34,9 @@ public class PessoaJuridicaController {
 	@Autowired
 	PessoaJuridicaService service;
 	
+	@CrossOrigin("localhost:8080")
 	@RequestMapping(method = RequestMethod.GET, produces = {"application/json", "application/xml"})
+	@Operation(summary="Listar todas as empresas")
 	@ResponseStatus(value = HttpStatus.OK)
 	public List<PessoaJuridicaVO> findAll() {
 		List<PessoaJuridicaVO> empresasVO = service.findAll();
@@ -38,7 +44,9 @@ public class PessoaJuridicaController {
 		return empresasVO;
 	}
 	
+	@CrossOrigin("localhost:8080")
 	@GetMapping(value = "/{id}", produces = {"application/json", "application/xml"})
+	@Operation(summary="Listar empresas por ID")
 	@ResponseStatus(value = HttpStatus.OK)
 	public PessoaJuridicaVO findById(@PathVariable("id") Long id) {
 		PessoaJuridicaVO empresaVO = service.findById(id);
@@ -47,6 +55,7 @@ public class PessoaJuridicaController {
 	}
 	
 	@PostMapping(consumes = {"application/json","application/xml"}, produces = {"application/json","application/xml"})
+	@Operation(summary="Cadastrar nova empresa")
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public PessoaJuridicaVO create(@Valid @RequestBody PessoaJuridicaVO empresa) {
 		PessoaJuridicaVO empresaVO = service.insert(empresa);
@@ -55,6 +64,7 @@ public class PessoaJuridicaController {
 	}
 	
 	@PutMapping(consumes = {"application/json","application/xml"}, produces = {"application/json","application/xml"})
+	@Operation(summary="Atualizar dados de empresa")
 	@ResponseStatus(value = HttpStatus.OK)
 	public PessoaJuridicaVO update(@Valid @RequestBody PessoaJuridicaVO empresa) {
 		PessoaJuridicaVO empresaVO = service.update(empresa);
@@ -63,6 +73,7 @@ public class PessoaJuridicaController {
 	}
 	
 	@DeleteMapping(value="/{id}")
+	@Operation(summary="Deletar empresas por ID")
 	@ResponseStatus(value = HttpStatus.OK)
 	public void delete(@PathVariable("id") Long id) {
 		service.delete(id);
