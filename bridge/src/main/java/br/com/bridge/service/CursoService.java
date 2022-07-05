@@ -1,8 +1,8 @@
 package br.com.bridge.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.bridge.adapter.DozerConverter;
@@ -23,8 +23,9 @@ public class CursoService {
 		return vo;
 	}
 
-	public List<CursoVO> findAll() {
-		return DozerConverter.parseListObject(repository.findAll(), CursoVO.class);
+	public Page<CursoVO> findAll(Pageable pageable) {
+		var page = 	repository.findAll(pageable);
+		return page.map(this::convertToCursoVO);
 	}
 
 	public CursoVO findById(Long id) {
@@ -33,8 +34,9 @@ public class CursoService {
 		return DozerConverter.parseObject(entity, CursoVO.class);
 	}
 	
-	public Curso findByName(String nomeCurso) {
-		return repository.findByNomeCurso(nomeCurso);
+	public Page<CursoVO> findByNameCurso(String nomeCurso, Pageable pageable){
+		var page = repository.findByNomeCurso(nomeCurso, pageable);
+		return page.map(this::convertToCursoVO);	
 	}
 	
 	public void delete(Long id) {
@@ -55,6 +57,10 @@ public class CursoService {
 		
 		var vo = DozerConverter.parseObject(repository.save(entity), CursoVO.class);
 		return vo;
+	}
+	
+	private CursoVO convertToCursoVO(Curso entity) {
+        return DozerConverter.parseObject(entity, CursoVO.class);
 	}
 
 }

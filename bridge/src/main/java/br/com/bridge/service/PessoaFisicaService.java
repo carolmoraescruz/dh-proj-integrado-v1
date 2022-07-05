@@ -1,8 +1,8 @@
 package br.com.bridge.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.bridge.adapter.DozerConverter;
@@ -23,14 +23,20 @@ public class PessoaFisicaService {
 		return vo;
 	}
 	
-	public List<PessoaFisicaVO> findAll() {
-		return DozerConverter.parseListObject(repository.findAll(), PessoaFisicaVO.class);
+	public Page<PessoaFisicaVO> findAll(Pageable pageable) {
+		var page = 	repository.findAll(pageable);
+		return page.map(this::convertToPessoaFisicaVO);
 	}
 	
 	public PessoaFisicaVO findById(Long id) {
 		var entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com este id."));
 		return DozerConverter.parseObject(entity, PessoaFisicaVO.class);
+	}
+	
+	public Page<PessoaFisicaVO> findByName(String nome, Pageable pageable){
+		var page = repository.findByNome(nome, pageable);
+		return page.map(this::convertToPessoaFisicaVO);	
 	}
 	
 	public void delete(Long id) {
@@ -54,6 +60,10 @@ public class PessoaFisicaService {
 
 		var vo = DozerConverter.parseObject(repository.save(entity), PessoaFisicaVO.class);
 		return vo;
+	}
+	
+	private PessoaFisicaVO convertToPessoaFisicaVO(PessoaFisica entity) {
+        return DozerConverter.parseObject(entity, PessoaFisicaVO.class);
 	}
 
 }
