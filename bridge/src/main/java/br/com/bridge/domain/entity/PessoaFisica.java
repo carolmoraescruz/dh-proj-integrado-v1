@@ -4,19 +4,14 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.bridge.domain.entity.enums.TipoPCD;
 import lombok.ToString;
@@ -53,9 +48,9 @@ public class PessoaFisica extends Pessoa {
 	@Column(name = "cv_linkedin")
 	private String cvLinkedin;
 	
-	@JsonIgnore
-	@ManyToMany(mappedBy = "alunos")
-	private Set<Turma> turmas = new HashSet<>();
+//	@JsonIgnore
+//	@ManyToMany(mappedBy = "alunos")
+//	private Set<Turma> turmas = new HashSet<>();
 	
 	public PessoaFisica() {
 	}
@@ -120,9 +115,9 @@ public class PessoaFisica extends Pessoa {
 		this.cvLinkedin = cvLinkedin;
 	}
 	
-	public Set<Turma> getTurmas() {
-		return turmas;
-	}
+//	public Set<Turma> getTurmas() {
+//		return turmas;
+//	}
 
 	public int calcularIdade(Date dataNascimento) {
 		LocalDate dataNascimentoConvertida = dataNascimento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -135,7 +130,7 @@ public class PessoaFisica extends Pessoa {
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(cpf, cvLinkedin, dataNascimento, nomeSocial, sobrenome, tipoPcd, turmas);
+		result = prime * result + Objects.hash(cpf, cvLinkedin, dataNascimento, nomeSocial, sobrenome, tipoPcd);
 		return result;
 	}
 
@@ -150,8 +145,7 @@ public class PessoaFisica extends Pessoa {
 		PessoaFisica other = (PessoaFisica) obj;
 		return Objects.equals(cpf, other.cpf) && Objects.equals(cvLinkedin, other.cvLinkedin)
 				&& Objects.equals(dataNascimento, other.dataNascimento) && Objects.equals(nomeSocial, other.nomeSocial)
-				&& Objects.equals(sobrenome, other.sobrenome) && tipoPcd == other.tipoPcd
-				&& Objects.equals(turmas, other.turmas);
+				&& Objects.equals(sobrenome, other.sobrenome) && tipoPcd == other.tipoPcd;
 	}	
 	
 }

@@ -11,7 +11,6 @@ import org.springframework.hateoas.RepresentationModel;
 import com.github.dozermapper.core.Mapping;
 
 import br.com.bridge.domain.entity.Curso;
-import br.com.bridge.domain.entity.PessoaFisica;
 import br.com.bridge.domain.entity.PessoaJuridica;
 import br.com.bridge.domain.entity.enums.StatusTurma;
 
@@ -25,7 +24,7 @@ public class TurmaVO extends RepresentationModel<TurmaVO> implements Serializabl
 	private LocalDate dataTermino;
 	private StatusTurma statusTurma;
 	private Curso curso;
-	private Set<PessoaFisica> alunos = new HashSet<>();
+//	private Set<PessoaFisica> alunos = new HashSet<>();
 	private Set<PessoaJuridica> empresas = new HashSet<>();
 	
 	public Long getKey() {
@@ -76,9 +75,9 @@ public class TurmaVO extends RepresentationModel<TurmaVO> implements Serializabl
 		this.curso = curso;
 	}
 	
-	public Set<PessoaFisica> getAlunos() {
-		return alunos;
-	}
+//	public Set<PessoaFisica> getAlunos() {
+//		return alunos;
+//	}
 	
 	public Set<PessoaJuridica> getEmpresas() {
 		return empresas;
@@ -88,8 +87,7 @@ public class TurmaVO extends RepresentationModel<TurmaVO> implements Serializabl
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result
-				+ Objects.hash(alunos, curso, dataInicio, dataTermino, empresas, horario, key, statusTurma);
+		result = prime * result + Objects.hash(curso, dataInicio, dataTermino, empresas, horario, key, statusTurma);
 		return result;
 	}
 
@@ -102,10 +100,10 @@ public class TurmaVO extends RepresentationModel<TurmaVO> implements Serializabl
 		if (getClass() != obj.getClass())
 			return false;
 		TurmaVO other = (TurmaVO) obj;
-		return Objects.equals(alunos, other.alunos) && Objects.equals(curso, other.curso)
-				&& Objects.equals(dataInicio, other.dataInicio) && Objects.equals(dataTermino, other.dataTermino)
-				&& Objects.equals(empresas, other.empresas) && Objects.equals(horario, other.horario)
-				&& Objects.equals(key, other.key) && statusTurma == other.statusTurma;
+		return Objects.equals(curso, other.curso) && Objects.equals(dataInicio, other.dataInicio)
+				&& Objects.equals(dataTermino, other.dataTermino) && Objects.equals(empresas, other.empresas)
+				&& Objects.equals(horario, other.horario) && Objects.equals(key, other.key)
+				&& statusTurma == other.statusTurma;
 	}
 
 }

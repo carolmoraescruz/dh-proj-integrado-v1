@@ -2,15 +2,12 @@ package br.com.bridge.domain.vo.v1;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import org.springframework.hateoas.RepresentationModel;
 
 import com.github.dozermapper.core.Mapping;
 
-import br.com.bridge.domain.entity.Turma;
 import br.com.bridge.domain.entity.enums.TipoPCD;
 
 public class PessoaFisicaVO extends RepresentationModel<PessoaFisicaVO> implements Serializable {
@@ -27,7 +24,7 @@ public class PessoaFisicaVO extends RepresentationModel<PessoaFisicaVO> implemen
 	private LocalDate dataNascimento;
 	private TipoPCD tipoPcd;
 	private String cvLinkedin;
-	private Set<Turma> turmas = new HashSet<>();
+//	private Set<Turma> turmas = new HashSet<>();
 	
 	public Long getKey() {
 		return key;
@@ -108,20 +105,16 @@ public class PessoaFisicaVO extends RepresentationModel<PessoaFisicaVO> implemen
 	public void setCvLinkedin(String cvLinkedin) {
 		this.cvLinkedin = cvLinkedin;
 	}
-	
-	public Set<Turma> getTurmas() {
-		return turmas;
-	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + Objects.hash(cpf, cvLinkedin, dataNascimento, email, endereco, key, nome, nomeSocial,
-				sobrenome, tipoPcd, turmas);
+				sobrenome, tipoPcd);
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -135,8 +128,13 @@ public class PessoaFisicaVO extends RepresentationModel<PessoaFisicaVO> implemen
 				&& Objects.equals(dataNascimento, other.dataNascimento) && Objects.equals(email, other.email)
 				&& Objects.equals(endereco, other.endereco) && Objects.equals(key, other.key)
 				&& Objects.equals(nome, other.nome) && Objects.equals(nomeSocial, other.nomeSocial)
-				&& Objects.equals(sobrenome, other.sobrenome) && tipoPcd == other.tipoPcd
-				&& Objects.equals(turmas, other.turmas);
+				&& Objects.equals(sobrenome, other.sobrenome) && tipoPcd == other.tipoPcd;
 	}
+	
+//	public Set<Turma> getTurmas() {
+//		return turmas;
+//	}
+	
+	
 
 }

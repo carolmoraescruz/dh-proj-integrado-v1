@@ -55,9 +55,9 @@ public class Turma implements Serializable {
 	@JoinColumn(name = "id_curso")
 	private Curso curso;
 
-	@ManyToMany
-	@JoinTable(name = "tb_turma_aluno", joinColumns = @JoinColumn(name = "id_turma"), inverseJoinColumns = @JoinColumn(name = "id_pessoa"))
-	private Set<PessoaFisica> alunos = new HashSet<>();
+//	@ManyToMany
+//	@JoinTable(name = "tb_turma_aluno", joinColumns = @JoinColumn(name = "id_turma"), inverseJoinColumns = @JoinColumn(name = "id_pessoa"))
+//	private Set<PessoaFisica> alunos = new HashSet<>();
 	
 	@ManyToMany
 	@JoinTable(name = "tb_turma_empresa", joinColumns = @JoinColumn(name = "id_turma"), inverseJoinColumns = @JoinColumn(name = "id_pessoa"))
@@ -126,17 +126,17 @@ public class Turma implements Serializable {
 		this.curso = curso;
 	}
 
-	public Set<PessoaFisica> getAlunos() {
-		return alunos;
-	}
-	
+//	public Set<PessoaFisica> getAlunos() {
+//		return alunos;
+//	}
+//	
 	public Set<PessoaJuridica> getEmpresas() {
 		return empresas;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(alunos, curso, dataInicio, dataTermino, empresas, horario, idTurma, statusTurma);
+		return Objects.hash(curso, dataInicio, dataTermino, empresas, horario, idTurma, statusTurma);
 	}
 
 	@Override
@@ -148,10 +148,10 @@ public class Turma implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Turma other = (Turma) obj;
-		return Objects.equals(alunos, other.alunos) && Objects.equals(curso, other.curso)
-				&& Objects.equals(dataInicio, other.dataInicio) && Objects.equals(dataTermino, other.dataTermino)
-				&& Objects.equals(empresas, other.empresas) && Objects.equals(horario, other.horario)
-				&& Objects.equals(idTurma, other.idTurma) && statusTurma == other.statusTurma;
+		return Objects.equals(curso, other.curso) && Objects.equals(dataInicio, other.dataInicio)
+				&& Objects.equals(dataTermino, other.dataTermino) && Objects.equals(empresas, other.empresas)
+				&& Objects.equals(horario, other.horario) && Objects.equals(idTurma, other.idTurma)
+				&& statusTurma == other.statusTurma;
 	}
 		
 }
