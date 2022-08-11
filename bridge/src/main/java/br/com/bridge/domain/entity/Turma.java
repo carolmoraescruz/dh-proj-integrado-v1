@@ -21,6 +21,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import br.com.bridge.domain.entity.enums.StatusTurma;
+import br.com.bridge.domain.entity.enums.TipoTurma;
 import lombok.ToString;
 
 @Entity
@@ -51,6 +52,10 @@ public class Turma implements Serializable {
 	@Column(name = "status_turma")
 	private int statusTurma;
 	
+	@NotNull
+	@Column(name = "tipo_turma")
+	private int tipoTurma;
+	
 	@ManyToOne
 	@JoinColumn(name = "id_curso")
 	private Curso curso;
@@ -66,13 +71,15 @@ public class Turma implements Serializable {
 	public Turma() {
 	}
 
-	public Turma(Long idTurma, String horario, LocalDate dataInicio, LocalDate dataTermino, StatusTurma statusTurma, Curso curso) {
+	public Turma(Long idTurma, String horario, LocalDate dataInicio, LocalDate dataTermino, 
+			StatusTurma statusTurma, TipoTurma tipoTurma, Curso curso) {
 		super();
 		this.idTurma = idTurma;
 		this.horario = horario;
 		this.dataInicio = dataInicio;
 		this.dataTermino = dataTermino;
 		setStatusTurma(statusTurma);
+		setTipoTurma(tipoTurma);
 		this.curso = curso;
 	}
 
@@ -117,6 +124,16 @@ public class Turma implements Serializable {
 			this.statusTurma = statusTurma.getCodigo();
 		}
 	}
+	
+	public TipoTurma getTipoTurma() {
+		return TipoTurma.valueOf(tipoTurma);
+	}
+
+	public void setTipoTurma(TipoTurma tipoTurma) {
+		if (tipoTurma != null) {
+			this.tipoTurma = tipoTurma.getCodigo();
+		}
+	}
 
 	public Curso getCurso() {
 		return curso;
@@ -136,7 +153,7 @@ public class Turma implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(curso, dataInicio, dataTermino, empresas, horario, idTurma, statusTurma);
+		return Objects.hash(curso, dataInicio, dataTermino, empresas, horario, idTurma, statusTurma, tipoTurma);
 	}
 
 	@Override
@@ -151,7 +168,7 @@ public class Turma implements Serializable {
 		return Objects.equals(curso, other.curso) && Objects.equals(dataInicio, other.dataInicio)
 				&& Objects.equals(dataTermino, other.dataTermino) && Objects.equals(empresas, other.empresas)
 				&& Objects.equals(horario, other.horario) && Objects.equals(idTurma, other.idTurma)
-				&& statusTurma == other.statusTurma;
+				&& statusTurma == other.statusTurma && tipoTurma == other.tipoTurma;
 	}
 		
 }
