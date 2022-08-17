@@ -1,0 +1,42 @@
+.footer{
+    overflow: hidden;
+    position: sticky;
+    top: 100%;
+    background-color: #305b98;
+    padding: 20px 10px;
+    text-align: center;
+    color: #ffffff;
+    border:1px solid #c0c0c0;
+   
+}
+
+p{
+    color: white;
+    text-align: center;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+    padding: 0px 5px;
+    font-size: 22px;
+}
+
+a:hover{
+    color: #fe8d65;
+}
+
+i{
+    padding: 0px 10px;
+}
+
+ul{
+    list-style-type: none;
+    
+}
+
+.col-lg-3 {
+    margin: 0 auto;
+    text-align: center; 
+
+}

@@ -1,0 +1,95 @@
+<app-pagina-publica
+    classeCssCustomizada="paginaCadastro"
+    classeCssLogo="desktop"
+    textoBotaoSubmit="Cadastrar"
+    (submiterFormulario)="aoSubmeter()"
+    rota = '/cursos/listar'
+>
+    <app-upload-imagem
+        imagemPrevisualizacao="assets/img/avatar.png"
+        classeCssImagemPrevisualizacao="avatarPrevisualizacao"
+        classeCssContainer="paginaCadastroUpload"
+        [referenciaFormulario]="obterReferencia('file')"
+        conteudoFormulario
+    ></app-upload-imagem>
+
+    <app-input-publico
+        imagem="assets/img/usuario.png"
+        placeholder="Nome"
+        tipo="text"
+        [referenciaFormulario]="obterReferencia('nome')"
+        conteudoFormulario
+    ></app-input-publico>
+
+    <app-input-publico
+        imagem="assets/img/usuario.png"
+        placeholder="Sobrenome"
+        tipo="text"
+        [referenciaFormulario]="obterReferencia('sobrenome')"
+        conteudoFormulario
+    ></app-input-publico>
+
+    <app-input-publico
+        imagem="assets/img/usuario.png"
+        placeholder="CPF"
+        tipo="text"
+        [referenciaFormulario]="obterReferencia('cpf')"
+        conteudoFormulario
+    ></app-input-publico>
+
+    <app-input-publico
+        imagem="assets/img/usuario.png"
+        placeholder="Data de Nascimento"
+        tipo="text"
+        [referenciaFormulario]="obterReferencia('dataNascimento')"
+        conteudoFormulario
+    ></app-input-publico>
+
+    <app-input-publico
+        imagem="assets/img/usuario.png"
+        placeholder="Escolha sua PCD"
+        tipo="text"
+        [referenciaFormulario]="obterReferencia('tipoPCD')"
+        conteudoFormulario
+    >
+    </app-input-publico>
+
+    <app-input-publico
+    imagem="assets/img/usuario.png"
+    placeholder="LinkedIn"
+    tipo="text"
+    [referenciaFormulario]="obterReferencia('cvLinkedin')"
+    conteudoFormulario
+></app-input-publico>
+
+    <app-input-publico
+        imagem="assets/img/e-mail.png"
+        placeholder="E-mail"
+        tipo="email"
+        [referenciaFormulario]="obterReferencia('email')"
+        conteudoFormulario
+    ></app-input-publico>
+
+    <app-input-publico
+        imagem="assets/img/key.png"
+        placeholder="Senha"
+        tipo="password"
+        [referenciaFormulario]="obterReferencia('senha')"
+        conteudoFormulario
+    ></app-input-publico>
+
+    <app-input-publico
+        imagem="assets/img/key.png"
+        placeholder="Confirmar Senha"
+        tipo="password"
+        [referenciaFormulario]="obterReferencia('confirmacaoSenha')"
+        conteudoFormulario
+    ></app-input-publico>
+
+    <app-rodape-pagina-publica
+        pergunta="Já possui uma conta?"
+        textoDaAcao="Faça seu login agora!"
+        rota="/login"
+        rodape
+    ></app-rodape-pagina-publica>
+</app-pagina-publica>

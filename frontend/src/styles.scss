@@ -1,0 +1,67 @@
+/* You can add global styles to this file, and also import other style files */
+@import './assets/fonts/fonts.scss';
+
+:root {
+    --fontRegular: 'Biennale Regular';
+    --fontBold: 'Biennale Bold';
+    --fontLight: 'Biennale Light';
+    
+    --corPrimaria: #305b98;
+    --corSecundaria: #fe8d65;
+    --cinza2: #7c7786;
+    --cinza3: #4d4c4d;
+    --cinza4: #333333;
+    --branco: #fff;
+    --vermelho: #ff0000;
+
+    
+}
+
+* {
+    font-family: var(--fontRegular);
+    font-size: 16px;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+.oculto {
+    display: none !important;
+}
+
+input {
+    &::placeholder,
+    &:-ms-input-placeholder,
+    &::-ms-input-placeholder {
+        color: var(--cinza2);
+    }
+}
+
+.mensagemErro {
+    color: var(--vermelho);
+    margin: 5px 0 0;
+    font-size: 90%;
+}
+
+.desktop {
+    display: none;
+
+    @media screen {
+        display: block;
+    }
+}
+
+.mobile {
+    display: block;
+
+    @media screen{
+        display: none !important;
+    }
+}
+
+
+
+

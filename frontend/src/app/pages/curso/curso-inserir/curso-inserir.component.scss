@@ -1,0 +1,31 @@
+h1{
+    color: var(--corPrimaria);
+}
+
+button, a {
+    margin: 0 5px;
+}
+
+table{
+    background-color: var(#7c7786);
+    border-color: var(--corPrimaria);
+}
+
+th{
+    background:var(--corPrimaria);
+    vertical-align: middle;
+    color: (--branco);
+}
+
+tr:hover{
+    background: var(--corSecundaria);
+}
+
+tr{
+    text-align: center;
+}
+
+td{
+    text-align: center;
+    vertical-align: middle;
+}

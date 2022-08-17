@@ -1,0 +1,98 @@
+<app-navbar2></app-navbar2>
+
+<div class="container">
+
+<br>
+
+<h1>Novo Curso</h1>
+
+<br>
+
+<div class="well">
+    <form #formCurso="ngForm">
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" class="form-control" id="nome"       name="nome" 
+                [(ngModel)]="curso.nome"
+                #nome="ngModel"
+            minlength="2" required>
+            <div *ngIf="nome.errors && (nome.dirty || nome.touched)" class="alert alert-danger">
+                <div [hidden]="!nome.errors?.['required']"> Digite o nome do curso.</div>
+                <div [hidden]="!nome.errors?.['minlength']"> O nome deve conter ao menos 2 caracteres</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="duracao">Duração em horas:</label>
+            <input type="text" class="form-control" id="duracao" name="duracao" 
+                [(ngModel)]="curso.duracao"
+                #duracao="ngModel"
+            required>
+            <div *ngIf="duracao.errors && (duracao.dirty || duracao.touched)"
+            class="alert alert-danger">
+                <div [hidden]="!duracao.errors?.['required']"> Digite a duração do curso.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="areaInteresse">Área de Interesse:</label>
+            <input type="text" class="form-control" id="areaInteresse" name="areaInteresse" 
+                [(ngModel)]="curso.areaInteresse"
+                #areaInteresse="ngModel"
+            required>
+            <div *ngIf="areaInteresse.errors && (areaInteresse.dirty || areaInteresse.touched)"
+            class="alert alert-danger">
+                <div [hidden]="!areaInteresse.errors?.['required']"> Escolha a área de interesse.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="sobreCurso">Descrição do curso:</label>
+            <input type="text" class="form-control" id="sobreCurso" name="sobreCurso" 
+                [(ngModel)]="curso.sobreCurso"
+                #sobreCurso="ngModel"
+            required>
+            <div *ngIf="sobreCurso.errors && (sobreCurso.dirty || sobreCurso.touched)"
+            class="alert alert-danger">
+                <div [hidden]="!sobreCurso.errors?.['required']"> Descreva o curso.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="escolaridadeMinima">Escolaridade mínima:</label>
+            <input type="text" class="form-control" id="escolaridadeMinima" name="escolaridadeMinima" 
+                [(ngModel)]="curso.escolaridadeMinima"
+                #escolaridadeMinima="ngModel"
+            required>
+            <div *ngIf="escolaridadeMinima.errors && (escolaridadeMinima.dirty || escolaridadeMinima.touched)"
+            class="alert alert-danger">
+                <div [hidden]="!escolaridadeMinima.errors?.['required']"> Escolha a escolaridade mínima para fazer o curso.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="linkCadastro">Link do cadastro:</label>
+            <input type="text" class="form-control" id="linkCadastro" name="linkCadastro" 
+                [(ngModel)]="curso.linkCadastro"
+                #linkCadastro="ngModel"
+            required>
+            <div *ngIf="linkCadastro.errors && (linkCadastro.dirty || linkCadastro.touched)"
+            class="alert alert-danger">
+                <div [hidden]="!linkCadastro.errors?.['required']"> Insira o link do curso.</div>
+            </div>
+        </div>
+
+        <br>
+        
+        <div class="form-group">
+            <button type="button" class="btn btn-primary"
+                (click)="inserir()"
+                [disabled]="!formCurso.form.valid">
+                <i class="fa fa-save" aria-hidden="true"></i> Salvar
+            </button>
+            <a class="btn btn-secondary" [routerLink]="['/cursos']">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
+            </a>
+        </div>
+    </form>
+</div>
+</div>
+
+<br>
+
+<app-footer></app-footer>
