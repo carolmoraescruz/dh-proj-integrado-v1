@@ -3,11 +3,9 @@
 [![Maven](https://badgen.net/badge/icon/maven?icon=maven&label)](https://https://maven.apache.org/)
 [![Eclipse](https://badgen.net/badge/icon/eclipse?icon=eclipse&label)](https://https://eclipse.org/)
 
-<p align="center"> <img src = https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0GnHthy15UfDpSBFSszDjXKOa14GsJfnNKgXOUv3pvFt0kWVVsmNshsK0iFFDUOEq-yI&usqp=CAU/> </p>
-
 
 <h1 align="center"> Plataforma de Cursos Minerva </h1>
-<p align="center">🚀 Projeto Integrador em construção </p>
+<p align="center">🚀 Projeto Integrador </p>
 
 <hr>
 
