@@ -63,5 +63,18 @@ input {
 }
 
 
+.btn.btn-primary {
+    background-color: var(--corSecundaria);
+    border-color: var(--corSecundaria);
+}
 
-
+.section-title.text-start::before {
+    position: absolute;
+    content: "";
+    width: calc(100% + 80px);
+    height: 2px;
+    top: 4px;
+    left: -40px;
+    background: var(--corSecundaria);
+    z-index: -1;
+}
